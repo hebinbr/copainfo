@@ -1,0 +1,21 @@
+@charset "UTF-8";
+
+@import url("2ef02affb6edc679_css2.css");
+
+@font-face {
+	font-family: 'FWC26';
+	src: 
+        url("bbd552cdf6c55fc1_FWC26-UltraCondensedBold.otf") format('opentype');
+	font-weight: 700;
+	font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+	font-family: 'FWC26';
+	src: 
+        url("bd375321a33ebd60_FWC26-NormalBlack.otf") format('opentype');
+	font-weight: 900;
+	font-style: normal;
+    font-display: swap;
+}

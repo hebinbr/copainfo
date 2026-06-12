@@ -1,0 +1,13 @@
+inspi- **jQuery** — JavaScript library used for DOM manipulation, event handling, and general utilities
+- **Swiper** — slide layout library used for building touch-enabled swipe carousels and sliders
+- **ImagesLoaded** — helper library used to detect when images in the document are fully loaded
+- **GSAP** — professional-grade animation library used for complex timeline-based transitions
+- **ScrollMagic** — scroll interaction library used to trigger layout and element animations on scroll
+- **Lenis** — smooth scrolling library used to provide a modern, high-performance scroll feel
+- **WordPress** — content management framework used to structure the initial page build
+- **Contact Form 7** — WordPress form builder plugin used to handle contact and subscription forms
+- **Google Tag Manager** — script management container used to inject tracking and utility scripts
+- **Google Analytics 4** — web analytics platform used to collect user interaction and traffic metrics
+- **reCAPTCHA** — security verification service used to protect forms from bot submissions
+- **AccessiBe** — accessibility suite used to provide the user widget and layout options
+- **Cloudflare** — web security platform used for bot verification and request challenge handling

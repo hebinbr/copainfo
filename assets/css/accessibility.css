@@ -1,0 +1,12 @@
+.acsb-trigger { inset: auto auto 20px 20px; border-radius: 50%; position: fixed; visibility: visible; cursor: pointer; box-sizing: border-box; opacity: 1; line-height: 1; background-color: rgb(20, 111, 248); z-index: 2147483647; transition: 0.15s; display: none !important; outline: none 0px !important; overflow: visible !important; }
+.acsb-trigger.acsb-ready { display: block !important; }
+.acsb-trigger.acsb-hidden { display: none !important; }
+.acsb-trigger.acsb-hidden.acsb-ready { display: none !important; }
+.acsb-trigger.acsb-trigger-hidden { display: none !important; visibility: hidden !important; pointer-events: none !important; }
+.acsb-trigger.acsb-trigger-hidden.acsb-ready { display: none !important; }
+
+::part(acsb-trigger) { color: rgb(16, 22, 79) !important; border-color: rgb(16, 22, 79) !important; }
+
+/* offline: ensure content is visible regardless of JS init state */
+html,body{opacity:1!important;visibility:visible!important}
+.page-loader,.site-loader,[class*='loading-screen'],[id*='loading-screen']{display:none!important}

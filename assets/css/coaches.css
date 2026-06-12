@@ -1,0 +1,153 @@
+/* --- Estilos da Seção de Comandantes Históricos --- */
+
+/* Seção dos Técnicos */
+.section-coaches {
+  background: radial-gradient(circle at 50% 50%, #032610 0%, #010a04 100%);
+  position: relative;
+  width: 100%;
+  padding-bottom: 80rem;
+}
+
+/* O container dos cards de técnicos - Exibição em grade flexível centralizada sem scroll */
+.section-coaches .coaches-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 30rem;
+  padding: 40rem 40rem 60rem 40rem;
+  width: 100%;
+  position: relative;
+  height: auto;
+  box-sizing: border-box;
+}
+
+/* Container de Avatares Táticos nos Cards */
+.coach-avatar-wrap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 70%;
+  overflow: hidden;
+  z-index: 1;
+  background: radial-gradient(circle at 50% 50%, #043819 0%, #011206 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Grid tático decorativo em marca d'água no fundo do avatar */
+.coach-avatar-wrap::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.18;
+  background-image: 
+    radial-gradient(circle, transparent 25%, #011206 25%, #011206 27%, transparent 27%),
+    linear-gradient(to right, rgba(0, 155, 58, 0.25) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 155, 58, 0.25) 1px, transparent 1px);
+  background-size: 50rem 50rem;
+  background-position: center;
+  pointer-events: none;
+}
+
+/* Seta tática de jogada em vetor SVG no fundo para reforçar o tema treinador */
+.coach-avatar-wrap::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.12;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M10 50 Q 50 10 90 50' fill='none' stroke='%23FFD700' stroke-width='2' stroke-dasharray='4 4'/%3E%3Cpath d='M90 50 L80 42 M90 50 L80 58' fill='none' stroke='%23FFD700' stroke-width='2'/%3E%3Ccircle cx='10' cy='50' r='3' fill='%23FFD700'/%3E%3C/svg%3E");
+  background-size: 80% 80%;
+  background-repeat: no-repeat;
+  background-position: center;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Iniciais gigantes do treinador com brilho neon */
+.coach-initials {
+  font-family: 'FWC26-UltraCondensedBold', 'Outfit', sans-serif;
+  font-size: 110rem;
+  font-weight: 900;
+  color: #FFD700; /* Dourado */
+  z-index: 2;
+  letter-spacing: -0.03em;
+  text-shadow: 0 0 25px rgba(255, 215, 0, 0.5), 0 0 50px rgba(0, 155, 58, 0.4);
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), color 0.4s ease, text-shadow 0.4s ease;
+  user-select: none;
+}
+
+/* Efeito de zoom e rotação leve no hover das iniciais */
+.player-card:hover .coach-initials {
+  transform: scale(1.15) rotate(-3deg);
+  color: #ffffff;
+  text-shadow: 0 0 35px rgba(255, 255, 255, 0.8), 0 0 70px rgba(0, 155, 58, 0.6);
+}
+
+/* Badge de anos de atuação personalizada */
+.coach-badge {
+  background: rgba(255, 215, 0, 0.85) !important; /* Dourado para o Técnico */
+  color: #011206 !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+}
+
+/* Layout específico dos cards dos técnicos */
+.coach-card {
+  flex: none; /* Mantém o tamanho fixo no flexbox */
+  width: 320rem;
+  height: 480rem;
+  border-radius: 28rem;
+  border: 1px solid rgba(255, 215, 0, 0.08) !important;
+}
+
+.coach-card:hover {
+  border-color: rgba(255, 215, 0, 0.3) !important;
+  box-shadow: 0 35px 60px -10px rgba(255, 215, 0, 0.25) !important;
+}
+
+/* Customização dos itens estatísticos dos técnicos */
+.coach-card .stat-lbl {
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.coach-card:hover .stat-val {
+  color: #FFD700;
+}
+
+/* --- Ajustes e Correções Específicas para Responsividade (Técnicos) --- */
+@media (max-width: 1024px) {
+  .section-coaches .coaches-container {
+    gap: 24rem;
+    padding: 30rem 30rem 50rem 30rem;
+  }
+
+  .coach-card {
+    width: 260rem;
+    height: 400rem;
+    border-radius: 20rem;
+  }
+
+  .coach-initials {
+    font-size: 90rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .section-coaches .coaches-container {
+    gap: 16rem;
+    padding: 20rem 20rem 40rem 20rem;
+  }
+
+  .coach-card {
+    width: 210rem;
+    height: 320rem;
+    border-radius: 16rem;
+  }
+
+  .coach-initials {
+    font-size: 70rem;
+  }
+}

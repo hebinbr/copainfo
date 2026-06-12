@@ -1,0 +1,141 @@
+/* --- Brazil Hero Section Styles --- */
+
+.hero-brazil {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  background-image: url('../images/brazil_hero.png');
+  background-size: cover;
+  background-position: center right;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* Gradiente de overlay escuro para garantir legibilidade à esquerda */
+.hero-brazil::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    rgba(0, 0, 0, 0.95) 0%, 
+    rgba(0, 0, 0, 0.8) 40%, 
+    rgba(0, 0, 0, 0.2) 80%, 
+    rgba(0, 0, 0, 0.05) 100%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.hero-brazil .wrapper {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: var(--mw);
+  margin: 0 auto;
+  padding: 0 var(--wr) 0 20rem; /* Alinhamento mais à esquerda */
+  box-sizing: border-box;
+}
+
+.hero-content {
+  max-width: 580rem; /* Restringe o texto à parte escura da esquerda */
+  display: flex;
+  flex-direction: column;
+  gap: 30rem;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: heroFadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: 0.2s;
+}
+
+
+.hero-persuasive-title {
+  font-family: 'FWC26-UltraCondensedBold', 'Outfit', 'Inter', sans-serif;
+  font-size: 64rem; /* Reduzido de 70rem para 64rem para melhor ajuste */
+  line-height: 0.95;
+  font-weight: 900;
+  text-transform: uppercase;
+  margin: 0;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+  text-shadow: 0 4px 30rem rgba(0, 0, 0, 0.8);
+  text-align: left;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: heroFadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: 0.35s;
+}
+
+.hero-persuasive-title span.highlight-yellow {
+  color: #FFD700;
+  text-shadow: 0 0 40rem rgba(255, 215, 0, 0.25);
+}
+
+.hero-persuasive-title span.highlight-green {
+  color: #009B3A;
+  text-shadow: 0 0 40rem rgba(0, 155, 58, 0.25);
+}
+
+.hero-description {
+  margin: 0;
+}
+
+.hero-description p {
+  font-family: 'Outfit', 'Inter', sans-serif;
+  font-size: var(--f-m);
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.85);
+  margin: 0;
+}
+
+/* Micro-animação de entrada */
+@keyframes heroFadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(40rem);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsividade */
+@media (max-width: 1024px) {
+  .hero-brazil {
+    background-position: 70% center;
+    align-items: flex-end;
+    padding-bottom: 80rem;
+  }
+  .hero-brazil::before {
+    background: linear-gradient(180deg, 
+      rgba(0, 0, 0, 0.4) 0%, 
+      rgba(0, 0, 0, 0.85) 60%, 
+      rgba(0, 0, 0, 0.95) 100%);
+  }
+  .hero-persuasive-title {
+    font-size: 45rem;
+    text-align: left;
+  }
+  .hero-content {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-brazil {
+    background-position: 65% center;
+    padding-bottom: 60rem;
+  }
+  .hero-persuasive-title {
+    font-size: 32rem;
+    text-align: left;
+  }
+  .hero-description p {
+    font-size: var(--f-s);
+  }
+}

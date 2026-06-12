@@ -1,0 +1,310 @@
+/* --- Estilos da Linha do Tempo dos Títulos Mundiais (Seleção Brasileira) --- */
+
+.section-timeline {
+  background: radial-gradient(circle at 50% 50%, #021a0b 0%, #000502 100%);
+  position: relative;
+  width: 100%;
+  padding: 100rem 0;
+  overflow: hidden;
+}
+
+/* Cabeçalho da Seção */
+.timeline-header {
+  position: relative;
+  width: 100%;
+  padding: 0 20rem;
+  z-index: 10;
+  text-align: center;
+  max-width: var(--mw);
+  margin: 0 auto 60rem;
+}
+
+.timeline-header .pretitle {
+  font-family: 'Outfit', 'Inter', sans-serif;
+  font-size: 14rem;
+  font-weight: 700;
+  color: #FFD700; /* Dourado */
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  margin-bottom: 10rem;
+  display: block;
+}
+
+.timeline-header .title h2 {
+  font-family: 'FWC26-UltraCondensedBold', 'Outfit', 'Inter', sans-serif;
+  font-size: 56rem;
+  line-height: 0.95;
+  color: #ffffff;
+  text-transform: uppercase;
+  margin: 0 0 20rem 0;
+  letter-spacing: -0.01em;
+  text-shadow: 0 4px 20rem rgba(0, 0, 0, 0.6);
+}
+
+.timeline-header .description p {
+  font-family: 'Outfit', 'Inter', sans-serif;
+  font-size: var(--f-m);
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.75);
+  max-width: 650rem;
+  margin: 0 auto;
+}
+
+/* Container Principal da Timeline */
+.timeline-container {
+  position: relative;
+  max-width: 1100rem;
+  margin: 0 auto;
+  padding: 40rem 20rem;
+}
+
+/* Linha Central da Timeline */
+.timeline-line {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: linear-gradient(to bottom, #009B3A 0%, #FFD700 50%, #009B3A 100%);
+  transform: translateX(-50%);
+  z-index: 1;
+  box-shadow: 0 0 15px rgba(0, 155, 58, 0.5);
+  border-radius: 2px;
+}
+
+/* Item da Timeline */
+.timeline-item {
+  position: relative;
+  width: 100%;
+  margin-bottom: 100rem;
+  display: flex;
+  justify-content: flex-start;
+  z-index: 2;
+}
+
+/* Alternância dos cards (Esquerda / Direita) */
+.timeline-item:nth-child(even) {
+  justify-content: flex-end;
+}
+
+/* O Badge com o Ano no centro da linha */
+.timeline-badge {
+  position: absolute;
+  left: 50%;
+  top: 20rem;
+  transform: translateX(-50%);
+  width: 70rem;
+  height: 70rem;
+  border-radius: 50%;
+  background: #010a04;
+  border: 3px solid #FFD700;
+  color: #FFD700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'FWC26-UltraCondensedBold', sans-serif;
+  font-size: 22rem;
+  font-weight: 900;
+  z-index: 10;
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.4), inset 0 0 10px rgba(0, 155, 58, 0.3);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.timeline-item:hover .timeline-badge {
+  background: #FFD700;
+  color: #010a04;
+  box-shadow: 0 0 25px #FFD700;
+  transform: translateX(-50%) scale(1.1);
+}
+
+/* O Card do Conteúdo */
+.timeline-content {
+  position: relative;
+  width: 45%;
+  border-radius: 24rem;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.02) 100%);
+  backdrop-filter: blur(20rem);
+  -webkit-backdrop-filter: blur(20rem);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Borda brilhante no hover do card */
+.timeline-content::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 24rem;
+  padding: 1.5px;
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.2) 0%, rgba(0, 155, 58, 0.2) 100%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0.6;
+  transition: opacity 0.4s ease;
+}
+
+.timeline-item:hover .timeline-content {
+  transform: translateY(-10rem);
+  border-color: rgba(255, 215, 0, 0.2);
+  box-shadow: 0 30px 60px rgba(0, 155, 58, 0.2);
+}
+
+.timeline-item:hover .timeline-content::before {
+  opacity: 1;
+  background: linear-gradient(135deg, #FFD700 0%, #009B3A 100%);
+}
+
+/* Imagem da Taça */
+.timeline-image-wrap {
+  position: relative;
+  width: 100%;
+  height: 220rem;
+  overflow: hidden;
+}
+
+.timeline-image-wrap::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 40%;
+  background: linear-gradient(to top, rgba(1, 10, 4, 0.95) 0%, rgba(1, 10, 4, 0) 100%);
+  z-index: 2;
+}
+
+.timeline-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.timeline-item:hover .timeline-image {
+  transform: scale(1.06);
+}
+
+/* Info do Card */
+.timeline-info {
+  padding: 24rem;
+  background: linear-gradient(to top, rgba(1, 10, 4, 1) 70%, rgba(1, 10, 4, 0.8) 100%);
+  box-sizing: border-box;
+}
+
+.timeline-year {
+  font-family: 'FWC26-UltraCondensedBold', sans-serif;
+  font-size: 28rem;
+  color: #ffffff;
+  margin: 0 0 10rem 0;
+  text-transform: uppercase;
+}
+
+.timeline-match {
+  font-family: 'Outfit', sans-serif;
+  font-size: 14rem;
+  color: #FFD700;
+  margin: 0 0 12rem 0;
+}
+
+.timeline-desc {
+  font-family: 'Outfit', sans-serif;
+  font-size: 14rem;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.75);
+  margin: 0 0 20rem 0;
+}
+
+/* Destaques (Jogadores) */
+.timeline-highlights {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8rem;
+}
+
+.timeline-highlights span {
+  font-family: 'Outfit', sans-serif;
+  font-size: 11rem;
+  font-weight: 700;
+  color: #ffffff;
+  background: rgba(0, 155, 58, 0.25);
+  border: 1px solid rgba(0, 155, 58, 0.4);
+  padding: 4rem 10rem;
+  border-radius: 8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: all 0.3s ease;
+}
+
+.timeline-item:hover .timeline-highlights span {
+  border-color: #FFD700;
+  background: rgba(255, 215, 0, 0.1);
+  color: #FFD700;
+}
+
+/* Responsividade - Tablets e Dispositivos Móveis */
+@media (max-width: 992px) {
+  .timeline-line {
+    left: 40rem;
+  }
+
+  .timeline-item {
+    justify-content: flex-end;
+  }
+
+  .timeline-item:nth-child(even) {
+    justify-content: flex-end;
+  }
+
+  .timeline-badge {
+    left: 40rem;
+  }
+
+  .timeline-content {
+    width: calc(100% - 100rem);
+  }
+}
+
+@media (max-width: 768px) {
+  .timeline-header .title h2 {
+    font-size: 36rem;
+  }
+  
+  .timeline-badge {
+    width: 50rem;
+    height: 50rem;
+    font-size: 16rem;
+    left: 30rem;
+  }
+  
+  .timeline-line {
+    left: 30rem;
+  }
+  
+  .timeline-content {
+    width: calc(100% - 70rem);
+    border-radius: 16rem;
+  }
+  
+  .timeline-content::before {
+    border-radius: 16rem;
+  }
+
+  .timeline-image-wrap {
+    height: 160rem;
+  }
+
+  .timeline-info {
+    padding: 16rem;
+  }
+
+  .timeline-year {
+    font-size: 22rem;
+  }
+}

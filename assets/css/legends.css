@@ -1,0 +1,383 @@
+/* --- Seção 5: Galeria das Lendas do Futebol Brasileiro --- */
+
+.section-legends {
+  background: radial-gradient(ellipse at 50% 0%, #0a1a0f 0%, #030a05 50%, #000000 100%);
+  position: relative;
+  width: 100%;
+  padding: 120rem 0 100rem;
+  overflow: hidden;
+}
+
+/* Efeito decorativo de fundo - estrelas douradas sutis */
+.section-legends::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(1px 1px at 10% 15%, rgba(255, 215, 0, 0.3) 50%, transparent 50%),
+    radial-gradient(1px 1px at 30% 45%, rgba(255, 215, 0, 0.2) 50%, transparent 50%),
+    radial-gradient(1px 1px at 60% 25%, rgba(255, 215, 0, 0.25) 50%, transparent 50%),
+    radial-gradient(1px 1px at 80% 65%, rgba(255, 215, 0, 0.15) 50%, transparent 50%),
+    radial-gradient(1px 1px at 45% 80%, rgba(255, 215, 0, 0.2) 50%, transparent 50%),
+    radial-gradient(1px 1px at 90% 10%, rgba(255, 215, 0, 0.3) 50%, transparent 50%),
+    radial-gradient(1.5px 1.5px at 20% 70%, rgba(0, 155, 58, 0.2) 50%, transparent 50%),
+    radial-gradient(1.5px 1.5px at 70% 50%, rgba(0, 155, 58, 0.15) 50%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Cabeçalho */
+.legends-header {
+  position: relative;
+  width: 100%;
+  padding: 0 20rem;
+  z-index: 10;
+  text-align: center;
+  max-width: var(--mw);
+  margin: 0 auto 80rem;
+}
+
+.legends-header .pretitle {
+  font-family: 'Outfit', 'Inter', sans-serif;
+  font-size: 14rem;
+  font-weight: 700;
+  color: #FFD700;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  margin-bottom: 10rem;
+  display: block;
+}
+
+.legends-header .title h2 {
+  font-family: 'FWC26-UltraCondensedBold', 'Outfit', 'Inter', sans-serif;
+  font-size: 56rem;
+  line-height: 0.95;
+  color: #ffffff;
+  text-transform: uppercase;
+  margin: 0 0 20rem 0;
+  letter-spacing: -0.01em;
+  text-shadow: 0 4px 20rem rgba(0, 0, 0, 0.6);
+}
+
+.legends-header .description p {
+  font-family: 'Outfit', 'Inter', sans-serif;
+  font-size: var(--f-m);
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.75);
+  max-width: 700rem;
+  margin: 0 auto;
+}
+
+/* Container Principal da Timeline de Lendas */
+.legends-container {
+  position: relative;
+  max-width: 1200rem;
+  margin: 0 auto;
+  padding: 40rem 20rem;
+  z-index: 1;
+}
+
+/* Linha Central dourada */
+.legends-line {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: linear-gradient(to bottom,
+    transparent 0%,
+    #FFD700 5%,
+    #009B3A 30%,
+    #FFD700 50%,
+    #009B3A 70%,
+    #FFD700 95%,
+    transparent 100%
+  );
+  transform: translateX(-50%);
+  z-index: 1;
+  box-shadow: 0 0 12px rgba(255, 215, 0, 0.3);
+  border-radius: 2px;
+}
+
+/* Item da Lenda */
+.legend-item {
+  position: relative;
+  width: 100%;
+  margin-bottom: 80rem;
+  display: flex;
+  justify-content: flex-start;
+  z-index: 2;
+}
+
+.legend-item:last-child {
+  margin-bottom: 0;
+}
+
+/* Alternância Esquerda/Direita */
+.legend-item:nth-child(even) {
+  justify-content: flex-end;
+}
+
+/* Badge de Ranking no centro da linha */
+.legend-badge {
+  position: absolute;
+  left: 50%;
+  top: 30rem;
+  transform: translateX(-50%);
+  width: 56rem;
+  height: 56rem;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #1a0e00 0%, #0a0500 100%);
+  border: 2.5px solid #FFD700;
+  color: #FFD700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'FWC26-UltraCondensedBold', sans-serif;
+  font-size: 22rem;
+  font-weight: 900;
+  z-index: 10;
+  box-shadow: 0 0 18px rgba(255, 215, 0, 0.35), inset 0 0 8px rgba(255, 215, 0, 0.1);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.legend-item:hover .legend-badge {
+  background: #FFD700;
+  color: #0a0500;
+  box-shadow: 0 0 30px rgba(255, 215, 0, 0.7);
+  transform: translateX(-50%) scale(1.15);
+}
+
+/* Card da Lenda */
+.legend-card {
+  position: relative;
+  width: 44%;
+  border-radius: 20rem;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.015) 100%);
+  backdrop-filter: blur(16rem);
+  -webkit-backdrop-filter: blur(16rem);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: row;
+}
+
+/* Borda brilhante no hover */
+.legend-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 20rem;
+  padding: 1.5px;
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.15) 0%, rgba(0, 155, 58, 0.15) 100%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0.5;
+  transition: opacity 0.4s ease;
+}
+
+.legend-item:hover .legend-card {
+  transform: translateY(-8rem);
+  border-color: rgba(255, 215, 0, 0.2);
+  box-shadow: 0 28px 56px rgba(0, 155, 58, 0.15), 0 0 30px rgba(255, 215, 0, 0.05);
+}
+
+.legend-item:hover .legend-card::before {
+  opacity: 1;
+  background: linear-gradient(135deg, #FFD700 0%, #009B3A 100%);
+}
+
+/* Imagem do Jogador */
+.legend-img-wrap {
+  position: relative;
+  width: 180rem;
+  min-height: 200rem;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.legend-img-wrap::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 40%;
+  height: 100%;
+  background: linear-gradient(to left, rgba(3, 10, 5, 0.9) 0%, rgba(3, 10, 5, 0) 100%);
+  z-index: 2;
+}
+
+.legend-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.legend-item:hover .legend-img {
+  transform: scale(1.08);
+}
+
+/* Info da Lenda */
+.legend-info {
+  padding: 24rem 24rem 24rem 12rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 1;
+  min-width: 0;
+}
+
+.legend-name {
+  font-family: 'FWC26-UltraCondensedBold', sans-serif;
+  font-size: 28rem;
+  color: #ffffff;
+  margin: 0 0 6rem 0;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  transition: color 0.3s ease;
+}
+
+.legend-item:hover .legend-name {
+  color: #FFD700;
+}
+
+.legend-era {
+  font-family: 'Outfit', sans-serif;
+  font-size: 12rem;
+  font-weight: 700;
+  color: #FFD700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin: 0 0 12rem 0;
+  opacity: 0.85;
+}
+
+.legend-desc {
+  font-family: 'Outfit', sans-serif;
+  font-size: 13rem;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0 0 16rem 0;
+}
+
+/* Tags de conquistas */
+.legend-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6rem;
+}
+
+.legend-tags span {
+  font-family: 'Outfit', sans-serif;
+  font-size: 10rem;
+  font-weight: 700;
+  color: #ffffff;
+  background: rgba(0, 155, 58, 0.2);
+  border: 1px solid rgba(0, 155, 58, 0.35);
+  padding: 3rem 9rem;
+  border-radius: 6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: all 0.3s ease;
+}
+
+.legend-item:hover .legend-tags span {
+  border-color: #FFD700;
+  background: rgba(255, 215, 0, 0.1);
+  color: #FFD700;
+}
+
+/* ====== RESPONSIVIDADE ====== */
+
+@media (max-width: 992px) {
+  .legends-line {
+    left: 30rem;
+  }
+
+  .legend-item,
+  .legend-item:nth-child(even) {
+    justify-content: flex-end;
+  }
+
+  .legend-badge {
+    left: 30rem;
+    width: 46rem;
+    height: 46rem;
+    font-size: 18rem;
+  }
+
+  .legend-card {
+    width: calc(100% - 80rem);
+  }
+}
+
+@media (max-width: 768px) {
+  .section-legends {
+    padding: 80rem 0 60rem;
+  }
+
+  .legends-header .title h2 {
+    font-size: 36rem;
+  }
+
+  .legends-header {
+    margin-bottom: 50rem;
+  }
+
+  .legends-line {
+    left: 20rem;
+  }
+
+  .legend-badge {
+    left: 20rem;
+    width: 40rem;
+    height: 40rem;
+    font-size: 16rem;
+    top: 20rem;
+  }
+
+  .legend-card {
+    width: calc(100% - 60rem);
+    flex-direction: column;
+    border-radius: 16rem;
+  }
+
+  .legend-card::before {
+    border-radius: 16rem;
+  }
+
+  .legend-img-wrap {
+    width: 100%;
+    min-height: 180rem;
+    max-height: 220rem;
+  }
+
+  .legend-img-wrap::after {
+    right: auto;
+    left: 0;
+    top: auto;
+    bottom: 0;
+    width: 100%;
+    height: 40%;
+    background: linear-gradient(to top, rgba(3, 10, 5, 0.95) 0%, rgba(3, 10, 5, 0) 100%);
+  }
+
+  .legend-info {
+    padding: 16rem;
+  }
+
+  .legend-name {
+    font-size: 22rem;
+  }
+
+  .legend-item {
+    margin-bottom: 50rem;
+  }
+}

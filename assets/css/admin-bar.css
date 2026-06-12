@@ -1,0 +1,28 @@
+
+        #wp-admin-bar-wp-logo > .ab-item .ab-icon:before {
+           content: url('https://dd.nyc/wp-content/uploads/2024/05/logo.svg') !important;
+            width: 75%;
+            height: auto;
+			left: 50%;
+    transform: translateX(-50%);
+            display: block;
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        #wpadminbar #wp-admin-bar-wp-logo > .ab-item .ab-icon {
+            width: 9rem;
+            height: auto;
+        }		
+		#adminmenu, #adminmenuback, #adminmenuwrap, #wpadminbar {
+			background-color: #000 !important;
+		}
+		
+		#adminmenu .wp-has-current-submenu .wp-submenu .wp-submenu-head, #adminmenu .wp-menu-arrow, #adminmenu .wp-menu-arrow div, #adminmenu li.current a.menu-top, #adminmenu li.wp-has-current-submenu a.wp-has-current-submenu {
+    		background: #F35422;
+		}
+				
+		div#wpadminbar {
+   			padding: 5px 0;
+		}
+    
