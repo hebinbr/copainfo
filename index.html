@@ -40,6 +40,8 @@
   <link rel="stylesheet" href="assets/css/legends.css"/>
   <!-- Estilos da nova seção de jogos e resultados (Seção 6) -->
   <link rel="stylesheet" href="assets/css/matches.css"/>
+  <!-- Estilos da nova seção de notícias RSS (Seção 7) -->
+  <link rel="stylesheet" href="assets/css/news.css"/>
 
   <!-- head-only js -->
   <!-- Inicializador SPA Angular offline, polyfills e scripts do núcleo -->
@@ -1660,6 +1662,25 @@
     </div>
   </div>
 
+  <!-- Sétima Seção: Notícias da Seleção Brasileira (RSS Feed) -->
+  <div class="section s7 section-news" id="section-news">
+    <div class="legends-header">
+      <div class="pretitle">Fique por dentro</div>
+      <div class="title title__default">
+        <h2>Notícias da Seleção</h2>
+      </div>
+      <div class="description">
+        <p>Acompanhe em tempo real as últimas novidades, treinos e bastidores da Seleção Brasileira direto do feed oficial do GE.</p>
+      </div>
+    </div>
+
+    <div class="wrapper">
+      <div class="news-grid" id="news-container">
+        <div class="news-loading">Buscando notícias mais recentes...</div>
+      </div>
+    </div>
+  </div>
+
   <style>
     .site-footer {
       background: linear-gradient(180deg, #121212 0%, #0a0a0a 100%);
@@ -1772,5 +1793,7 @@
   <script src="assets/js/offline-fix.js"></script>
   <!-- Script da seção de jogos e resultados -->
   <script src="assets/js/matches.js"></script>
+  <!-- Script da seção de notícias RSS -->
+  <script src="assets/js/news.js"></script>
 </body>
 </html>
