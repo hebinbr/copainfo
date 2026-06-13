@@ -54,10 +54,10 @@
 
 
 .hero-persuasive-title {
-  font-family: 'FWC26-UltraCondensedBold', 'Outfit', 'Inter', sans-serif;
+  font-family: 'FWC26', 'Outfit', 'Inter', sans-serif;
   font-size: 64rem; /* Reduzido de 70rem para 64rem para melhor ajuste */
   line-height: 0.95;
-  font-weight: 900;
+  font-weight: 700;
   text-transform: uppercase;
   margin: 0;
   letter-spacing: -0.02em;
