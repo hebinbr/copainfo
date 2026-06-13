@@ -338,3 +338,413 @@
     font-size: 32rem;
   }
 }
+
+/* === Modal de Escalação Tática === */
+
+.lineup-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(2, 6, 12, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  padding: 20px;
+}
+
+.lineup-modal-overlay.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.lineup-modal-wrapper {
+  width: 100%;
+  max-width: 780px;
+  background: linear-gradient(135deg, rgba(8, 20, 36, 0.98) 0%, rgba(3, 10, 18, 0.98) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.8), 0 0 40px rgba(0, 114, 206, 0.1);
+  overflow: hidden;
+  transform: scale(0.92);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+  max-height: 90vh;
+}
+
+.lineup-modal-overlay.active .lineup-modal-wrapper {
+  transform: scale(1);
+}
+
+/* Header */
+.lineup-modal-header {
+  padding: 24px 30px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+
+.lineup-modal-title-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.lineup-modal-title {
+  font-family: 'FWC26-UltraCondensedBold', sans-serif;
+  font-size: 24px;
+  color: #ffffff;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.lineup-modal-subtitle {
+  font-family: 'Outfit', sans-serif;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.6);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.lineup-modal-subtitle span.coach {
+  color: #00ff88;
+  font-weight: 600;
+}
+
+.lineup-modal-close {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.lineup-modal-close:hover {
+  background: #EB5757;
+  border-color: #EB5757;
+  transform: rotate(90deg);
+}
+
+.lineup-modal-close svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Body */
+.lineup-modal-body {
+  padding: 30px;
+  overflow-y: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+}
+
+/* Campo de Futebol Tático (Visão Vertical de Metade do Campo) */
+.pitch-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.soccer-pitch {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4/5;
+  background: radial-gradient(circle at 50% 100%, #0c381d 0%, #051d0e 100%);
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  border-radius: 16px;
+  box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.7), 0 10px 30px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+}
+
+/* Demarcações do Campo */
+.pitch-center-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.pitch-center-circle {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 36%;
+  aspect-ratio: 1;
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  border-radius: 50%;
+}
+
+.pitch-penalty-area {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 62%;
+  height: 22%;
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  border-bottom: none;
+}
+
+.pitch-goal-area {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 30%;
+  height: 7%;
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  border-bottom: none;
+}
+
+.pitch-penalty-spot {
+  position: absolute;
+  bottom: 11%;
+  left: 50%;
+  transform: translate(-50%, 50%);
+  width: 6px;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 50%;
+}
+
+.pitch-penalty-arc {
+  position: absolute;
+  bottom: 22%;
+  left: 50%;
+  transform: translate(-50%, 50%);
+  width: 22%;
+  aspect-ratio: 2/1;
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  border-bottom: none;
+  border-radius: 60px 60px 0 0;
+}
+
+/* Jogadores no Campo */
+.pitch-player {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 10;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.player-shirt {
+  width: 36px;
+  height: 36px;
+  background: radial-gradient(circle, #FFD700 0%, #E6B800 100%);
+  border: 2.5px solid #009B3A;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'FWC26-UltraCondensedBold', sans-serif;
+  font-size: 15px;
+  font-weight: 900;
+  color: #009B3A;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5), 0 0 0 0px rgba(0, 255, 136, 0);
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.player-shirt.gk-shirt {
+  background: radial-gradient(circle, #0072CE 0%, #00569E 100%);
+  border-color: #ffffff;
+  color: #ffffff;
+}
+
+.player-name {
+  margin-top: 6px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  color: #ffffff;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.9), 0 0 10px rgba(0, 0, 0, 0.5);
+  text-align: center;
+  white-space: nowrap;
+  letter-spacing: 0.02em;
+}
+
+.pitch-player:hover {
+  transform: translate(-50%, -50%) scale(1.1);
+  z-index: 15;
+}
+
+.pitch-player:hover .player-shirt {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6), 0 0 15px rgba(0, 255, 136, 0.6);
+  border-color: #ffffff;
+}
+
+/* Painel Lateral (Info, Reservas e Staff) */
+.lineup-info-side {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.lineup-section-title {
+  font-family: 'FWC26-UltraCondensedBold', sans-serif;
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.8);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-left: 3px solid #009B3A;
+  padding-left: 10px;
+  margin-bottom: 16px;
+}
+
+.subs-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+  max-height: 280px;
+  overflow-y: auto;
+  padding-right: 6px;
+}
+
+/* Barra de rolagem customizada */
+.subs-list::-webkit-scrollbar {
+  width: 4px;
+}
+.subs-list::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 2px;
+}
+.subs-list::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+}
+.subs-list::-webkit-scrollbar-thumb:hover {
+  background: #009B3A;
+}
+
+.sub-item {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: all 0.2s ease;
+}
+
+.sub-item:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(0, 155, 58, 0.2);
+}
+
+.sub-player-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.sub-jersey {
+  font-family: 'FWC26-UltraCondensedBold', sans-serif;
+  font-size: 11px;
+  width: 22px;
+  height: 22px;
+  background: rgba(0, 155, 58, 0.12);
+  border: 1px solid rgba(0, 155, 58, 0.3);
+  color: #00ff88;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+}
+
+.sub-position {
+  font-size: 10px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.35);
+  text-transform: uppercase;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 2px 6px;
+  border-radius: 4px;
+  letter-spacing: 0.05em;
+}
+
+.tactical-notes {
+  background: linear-gradient(135deg, rgba(0, 114, 206, 0.06) 0%, rgba(0, 155, 58, 0.06) 100%);
+  border: 1px solid rgba(0, 114, 206, 0.15);
+  border-radius: 16px;
+  padding: 18px 20px;
+  font-family: 'Outfit', sans-serif;
+}
+
+.tactical-notes p {
+  font-size: 12.5px;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ====== RESPONSIVIDADE ====== */
+
+@media (max-width: 768px) {
+  .lineup-modal-wrapper {
+    max-height: 95vh;
+  }
+
+  .lineup-modal-header {
+    padding: 16px 20px;
+  }
+
+  .lineup-modal-title {
+    font-size: 20px;
+  }
+
+  .lineup-modal-body {
+    padding: 20px;
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .pitch-container {
+    max-width: 320px;
+    margin: 0 auto;
+  }
+
+  .soccer-pitch {
+    border-radius: 12px;
+  }
+
+  .player-shirt {
+    width: 30px;
+    height: 30px;
+    font-size: 13px;
+  }
+
+  .player-name {
+    font-size: 9px;
+  }
+
+  .subs-list {
+    max-height: 200px;
+  }
+}

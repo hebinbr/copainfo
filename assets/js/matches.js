@@ -319,6 +319,344 @@ $(document).ready(function() {
     });
   }
 
+  // === Banco de Dados de Escalações Táticas ===
+  const MATCH_LINEUPS = {
+    1: { // Brasil vs Marrocos
+      matchName: "Brasil vs Marrocos",
+      scheme: "4-3-3",
+      coach: "Dorival Júnior",
+      notes: "Seleção estreia com força total no ataque com Vini Jr. e Raphinha abertos nas pontas e Rodrygo como falso 9 para criar espaço no meio-campo do Marrocos. Guilherme Arana ganha a disputa na lateral esquerda.",
+      starters: [
+        { name: "Alisson", number: 1, pos: "GK", left: 50, top: 90, isGK: true },
+        { name: "Danilo", number: 2, pos: "LD", left: 84, top: 70 },
+        { name: "Marquinhos", number: 3, pos: "ZD", left: 62, top: 76 },
+        { name: "G. Magalhães", number: 4, pos: "ZE", left: 38, top: 76 },
+        { name: "G. Arana", number: 6, pos: "LE", left: 16, top: 70 },
+        { name: "B. Guimarães", number: 5, pos: "VOL", left: 50, top: 55 },
+        { name: "João Gomes", number: 8, pos: "MC", left: 70, top: 42 },
+        { name: "L. Paquetá", number: 10, pos: "ME", left: 30, top: 42 },
+        { name: "Raphinha", number: 7, pos: "PD", left: 80, top: 18 },
+        { name: "Rodrygo", number: 9, pos: "ATA", left: 50, top: 12 },
+        { name: "Vinicius Jr", number: 11, pos: "PE", left: 20, top: 18 }
+      ],
+      substitutes: [
+        { name: "Ederson", number: 23, pos: "Goleiro" },
+        { name: "Bento", number: 12, pos: "Goleiro" },
+        { name: "Léo Beraldo", number: 13, pos: "Zagueiro" },
+        { name: "Éder Militão", number: 14, pos: "Zagueiro" },
+        { name: "Yan Couto", number: 15, pos: "Lateral" },
+        { name: "Wendell", number: 16, pos: "Lateral" },
+        { name: "André", number: 17, pos: "Meio-campo" },
+        { name: "Andreas Pereira", number: 18, pos: "Meio-campo" },
+        { name: "Savinho", number: 21, pos: "Atacante" },
+        { name: "Endrick", number: 20, pos: "Atacante" },
+        { name: "G. Martinelli", number: 22, pos: "Atacante" }
+      ]
+    },
+    2: { // Brasil vs Haiti
+      matchName: "Brasil vs Haiti",
+      scheme: "4-3-3",
+      coach: "Dorival Júnior",
+      notes: "Para dar ritmo e poupar atletas do desgaste físico, Dorival opta por rodar o elenco. Ederson assume o gol e Endrick ganha a vaga de titular como referência na área. Militão e Beraldo formam a zaga de início.",
+      starters: [
+        { name: "Ederson", number: 23, pos: "GK", left: 50, top: 90, isGK: true },
+        { name: "Yan Couto", number: 15, pos: "LD", left: 84, top: 70 },
+        { name: "Éder Militão", number: 14, pos: "ZD", left: 62, top: 76 },
+        { name: "L. Beraldo", number: 13, pos: "ZE", left: 38, top: 76 },
+        { name: "Wendell", number: 16, pos: "LE", left: 16, top: 70 },
+        { name: "André", number: 17, pos: "VOL", left: 50, top: 55 },
+        { name: "Andreas P.", number: 18, pos: "MC", left: 70, top: 42 },
+        { name: "L. Paquetá", number: 10, pos: "ME", left: 30, top: 42 },
+        { name: "Savinho", number: 21, pos: "PD", left: 80, top: 18 },
+        { name: "Endrick", number: 20, pos: "ATA", left: 50, top: 12 },
+        { name: "G. Martinelli", number: 22, pos: "PE", left: 20, top: 18 }
+      ],
+      substitutes: [
+        { name: "Alisson Becker", number: 1, pos: "Goleiro" },
+        { name: "Bento", number: 12, pos: "Goleiro" },
+        { name: "Marquinhos", number: 3, pos: "Zagueiro" },
+        { name: "G. Magalhães", number: 4, pos: "Zagueiro" },
+        { name: "Danilo", number: 2, pos: "Lateral" },
+        { name: "Guilherme Arana", number: 6, pos: "Lateral" },
+        { name: "Bruno Guimarães", number: 5, pos: "Meio-campo" },
+        { name: "João Gomes", number: 8, pos: "Meio-campo" },
+        { name: "Raphinha", number: 7, pos: "Atacante" },
+        { name: "Rodrygo", number: 9, pos: "Atacante" },
+        { name: "Vinicius Jr", number: 11, pos: "Atacante" }
+      ]
+    },
+    3: { // Escócia vs Brasil
+      matchName: "Escócia vs Brasil",
+      scheme: "4-2-3-1",
+      coach: "Dorival Júnior",
+      notes: "Brasil joga com um duplo pivô no meio com Bruno Guimarães e João Gomes protegendo a defesa. A linha de 3 meias ofensivos (Raphinha, Rodrygo, Vini Jr) alimenta Endrick, que ganha a vaga de 9 definitivo.",
+      starters: [
+        { name: "Alisson", number: 1, pos: "GK", left: 50, top: 90, isGK: true },
+        { name: "Danilo", number: 2, pos: "LD", left: 84, top: 70 },
+        { name: "Marquinhos", number: 3, pos: "ZD", left: 62, top: 76 },
+        { name: "G. Magalhães", number: 4, pos: "ZE", left: 38, top: 76 },
+        { name: "G. Arana", number: 6, pos: "LE", left: 16, top: 70 },
+        { name: "B. Guimarães", number: 5, pos: "V1", left: 62, top: 55 },
+        { name: "João Gomes", number: 8, pos: "V2", left: 38, top: 55 },
+        { name: "Raphinha", number: 7, pos: "MD", left: 78, top: 35 },
+        { name: "Rodrygo", number: 9, pos: "MC", left: 50, top: 38 },
+        { name: "Vinicius Jr", number: 11, pos: "ME", left: 22, top: 35 },
+        { name: "Endrick", number: 20, pos: "ATA", left: 50, top: 14 }
+      ],
+      substitutes: [
+        { name: "Ederson", number: 23, pos: "Goleiro" },
+        { name: "Bento", number: 12, pos: "Goleiro" },
+        { name: "Léo Beraldo", number: 13, pos: "Zagueiro" },
+        { name: "Éder Militão", number: 14, pos: "Zagueiro" },
+        { name: "Yan Couto", number: 15, pos: "Lateral" },
+        { name: "Wendell", number: 16, pos: "Lateral" },
+        { name: "André", number: 17, pos: "Meio-campo" },
+        { name: "Lucas Paquetá", number: 10, pos: "Meio-campo" },
+        { name: "Andreas Pereira", number: 18, pos: "Meio-campo" },
+        { name: "Savinho", number: 21, pos: "Atacante" },
+        { name: "G. Martinelli", number: 22, pos: "Atacante" }
+      ]
+    },
+    4: { // Bolívia vs Brasil
+      matchName: "Bolívia vs Brasil",
+      scheme: "4-3-3",
+      coach: "Dorival Júnior",
+      notes: "Partida difícil na altitude de El Alto. Dorival reforçou a marcação pelo meio com João Gomes e Bruno Guimarães auxiliando a zaga e explorou a velocidade de Vinicius Jr e Raphinha nos contra-ataques.",
+      starters: [
+        { name: "Alisson", number: 1, pos: "GK", left: 50, top: 90, isGK: true },
+        { name: "Danilo", number: 2, pos: "LD", left: 84, top: 70 },
+        { name: "Marquinhos", number: 3, pos: "ZD", left: 62, top: 76 },
+        { name: "G. Magalhães", number: 4, pos: "ZE", left: 38, top: 76 },
+        { name: "G. Arana", number: 6, pos: "LE", left: 16, top: 70 },
+        { name: "B. Guimarães", number: 5, pos: "VOL", left: 50, top: 55 },
+        { name: "João Gomes", number: 8, pos: "MC", left: 70, top: 42 },
+        { name: "L. Paquetá", number: 10, pos: "ME", left: 30, top: 42 },
+        { name: "Raphinha", number: 7, pos: "PD", left: 80, top: 18 },
+        { name: "Rodrygo", number: 9, pos: "ATA", left: 50, top: 12 },
+        { name: "Vinicius Jr", number: 11, pos: "PE", left: 20, top: 18 }
+      ],
+      substitutes: [
+        { name: "Ederson", number: 23, pos: "Goleiro" },
+        { name: "Bento", number: 12, pos: "Goleiro" },
+        { name: "Éder Militão", number: 14, pos: "Zagueiro" },
+        { name: "Yan Couto", number: 15, pos: "Lateral" },
+        { name: "Wendell", number: 16, pos: "Lateral" },
+        { name: "André", number: 17, pos: "Meio-campo" },
+        { name: "Andreas Pereira", number: 18, pos: "Meio-campo" },
+        { name: "Savinho", number: 21, pos: "Atacante" },
+        { name: "Endrick", number: 20, pos: "Atacante" }
+      ]
+    },
+    5: { // Brasil vs Uruguai
+      matchName: "Brasil vs Uruguai",
+      scheme: "4-3-3",
+      coach: "Dorival Júnior",
+      notes: "Clássico tenso na Arena Fonte Nova. Com a ausência de alguns meias lesionados, Gerson assumiu a volância titular. Igor Jesus jogou como centroavante de referência, com Raphinha atuando flutuando como meia central.",
+      starters: [
+        { name: "Ederson", number: 23, pos: "GK", left: 50, top: 90, isGK: true },
+        { name: "Danilo", number: 2, pos: "LD", left: 84, top: 70 },
+        { name: "Marquinhos", number: 3, pos: "ZD", left: 62, top: 76 },
+        { name: "G. Magalhães", number: 4, pos: "ZE", left: 38, top: 76 },
+        { name: "Abner", number: 16, pos: "LE", left: 16, top: 70 },
+        { name: "B. Guimarães", number: 5, pos: "VOL", left: 50, top: 55 },
+        { name: "Gerson", number: 8, pos: "MC", left: 70, top: 42 },
+        { name: "Raphinha", number: 10, pos: "ME", left: 30, top: 42 },
+        { name: "Savinho", number: 7, pos: "PD", left: 80, top: 18 },
+        { name: "Igor Jesus", number: 9, pos: "ATA", left: 50, top: 12 },
+        { name: "Vinicius Jr", number: 11, pos: "PE", left: 20, top: 18 }
+      ],
+      substitutes: [
+        { name: "Alisson Becker", number: 1, pos: "Goleiro" },
+        { name: "Weverton", number: 12, pos: "Goleiro" },
+        { name: "Léo Ortiz", number: 13, pos: "Zagueiro" },
+        { name: "Murilo", number: 14, pos: "Zagueiro" },
+        { name: "Dodô", number: 15, pos: "Lateral" },
+        { name: "Alex Telles", number: 6, pos: "Lateral" },
+        { name: "André", number: 17, pos: "Meio-campo" },
+        { name: "Andreas Pereira", number: 18, pos: "Meio-campo" },
+        { name: "Lucas Paquetá", number: 19, pos: "Meio-campo" },
+        { name: "Estêvão", number: 21, pos: "Atacante" },
+        { name: "Luiz Henrique", number: 20, pos: "Atacante" },
+        { name: "G. Martinelli", number: 22, pos: "Atacante" }
+      ]
+    },
+    6: { // Venezuela vs Brasil
+      matchName: "Venezuela vs Brasil",
+      scheme: "4-3-3",
+      coach: "Dorival Júnior",
+      notes: "Jogo sob chuva em Maturín. Vanderson assume a lateral direita e a dupla Gerson e Bruno Guimarães controla o ritmo de jogo no meio. Igor Jesus é mantido como referência de pivô no ataque brasileiro.",
+      starters: [
+        { name: "Ederson", number: 23, pos: "GK", left: 50, top: 90, isGK: true },
+        { name: "Vanderson", number: 2, pos: "LD", left: 84, top: 70 },
+        { name: "Marquinhos", number: 3, pos: "ZD", left: 62, top: 76 },
+        { name: "G. Magalhães", number: 4, pos: "ZE", left: 38, top: 76 },
+        { name: "Abner", number: 16, pos: "LE", left: 16, top: 70 },
+        { name: "B. Guimarães", number: 5, pos: "VOL", left: 50, top: 55 },
+        { name: "Gerson", number: 8, pos: "MC", left: 70, top: 42 },
+        { name: "Raphinha", number: 10, pos: "ME", left: 30, top: 42 },
+        { name: "Savinho", number: 7, pos: "PD", left: 80, top: 18 },
+        { name: "Igor Jesus", number: 9, pos: "ATA", left: 50, top: 12 },
+        { name: "Vinicius Jr", number: 11, pos: "PE", left: 20, top: 18 }
+      ],
+      substitutes: [
+        { name: "Alisson Becker", number: 1, pos: "Goleiro" },
+        { name: "Weverton", number: 12, pos: "Goleiro" },
+        { name: "Léo Ortiz", number: 13, pos: "Zagueiro" },
+        { name: "Murilo", number: 14, pos: "Zagueiro" },
+        { name: "Dodô", number: 15, pos: "Lateral" },
+        { name: "Alex Telles", number: 6, pos: "Lateral" },
+        { name: "André", number: 17, pos: "Meio-campo" },
+        { name: "Andreas Pereira", number: 18, pos: "Meio-campo" },
+        { name: "Lucas Paquetá", number: 19, pos: "Meio-campo" },
+        { name: "Estêvão", number: 21, pos: "Atacante" },
+        { name: "Luiz Henrique", number: 20, pos: "Atacante" },
+        { name: "G. Martinelli", number: 22, pos: "Atacante" }
+      ]
+    }
+  };
+
+  // Abre o modal de escalações
+  function openLineupModal(matchId) {
+    const lineup = MATCH_LINEUPS[matchId] || MATCH_LINEUPS[1];
+
+    let startersHtml = '';
+    lineup.starters.forEach(p => {
+      const shirtClass = p.isGK ? 'player-shirt gk-shirt' : 'player-shirt';
+      startersHtml += `
+        <div class="pitch-player" style="left: ${p.left}%; top: ${p.top}%;">
+          <div class="${shirtClass}">${p.number}</div>
+          <span class="player-name">${p.name}</span>
+        </div>
+      `;
+    });
+
+    let substitutesHtml = '';
+    lineup.substitutes.forEach(p => {
+      substitutesHtml += `
+        <div class="sub-item">
+          <div class="sub-player-info">
+            <div class="sub-jersey">${p.number}</div>
+            <span class="sub-name">${p.name}</span>
+          </div>
+          <span class="sub-position">${p.pos}</span>
+        </div>
+      `;
+    });
+
+    const modalHtml = `
+      <div class="lineup-modal-overlay" id="lineup-modal">
+        <div class="lineup-modal-wrapper">
+          <div class="lineup-modal-header">
+            <div class="lineup-modal-title-wrap">
+              <span class="lineup-modal-title">${lineup.matchName}</span>
+              <span class="lineup-modal-subtitle">Técnico: <span class="coach">${lineup.coach}</span> · Esquema: ${lineup.scheme}</span>
+            </div>
+            <button class="lineup-modal-close" id="close-lineup-modal">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+          
+          <div class="lineup-modal-body">
+            <!-- Campo Tático -->
+            <div class="pitch-container">
+              <div class="soccer-pitch">
+                <div class="pitch-center-line"></div>
+                <div class="pitch-center-circle"></div>
+                <div class="pitch-penalty-area"></div>
+                <div class="pitch-goal-area"></div>
+                <div class="pitch-penalty-spot"></div>
+                <div class="pitch-penalty-arc"></div>
+                
+                <!-- Titulares -->
+                ${startersHtml}
+              </div>
+            </div>
+            
+            <!-- Painel Lateral -->
+            <div class="lineup-info-side">
+              <div>
+                <div class="lineup-section-title">Elenco Escalado</div>
+                <div class="subs-list">
+                  ${substitutesHtml}
+                </div>
+              </div>
+              
+              <div class="tactical-notes">
+                <div class="lineup-section-title" style="border-left-color: #0072CE; margin-bottom: 8px;">Notas Táticas</div>
+                <p>${lineup.notes}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+
+    $('#lineup-modal').remove();
+    $('body').append(modalHtml);
+
+    setTimeout(() => {
+      $('#lineup-modal').addClass('active');
+
+      if (typeof gsap !== 'undefined') {
+        gsap.from(".pitch-player", {
+          opacity: 0,
+          scale: 0,
+          y: 20,
+          stagger: 0.05,
+          duration: 0.5,
+          ease: "back.out(1.7)",
+          delay: 0.15
+        });
+
+        gsap.from(".sub-item", {
+          opacity: 0,
+          x: 25,
+          stagger: 0.03,
+          duration: 0.4,
+          ease: "power2.out",
+          delay: 0.25
+        });
+      }
+    }, 10);
+  }
+
+  // Fecha o modal de escalação
+  function closeLineupModal() {
+    const modal = $('#lineup-modal');
+    if (!modal.length) return;
+
+    modal.removeClass('active');
+    setTimeout(() => {
+      modal.remove();
+    }, 400);
+  }
+
+  // Triggers de fechar modal
+  $(document).on('click', '#close-lineup-modal', function(e) {
+    e.stopPropagation();
+    closeLineupModal();
+  });
+
+  $(document).on('click', '#lineup-modal', function(e) {
+    if ($(e.target).hasClass('lineup-modal-overlay')) {
+      closeLineupModal();
+    }
+  });
+
+  $(document).on('keydown', function(e) {
+    if (e.key === 'Escape') {
+      closeLineupModal();
+    }
+  });
+
+  // Ativa evento de clique nos cards de partida
+  $(document).on('click', '.match-card', function() {
+    const matchId = $(this).data('match-id');
+    openLineupModal(matchId);
+  });
+
   // Inicializa o carregamento
   loadAPIData();
 });
