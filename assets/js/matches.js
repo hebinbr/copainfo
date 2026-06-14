@@ -139,9 +139,22 @@ $(document).ready(function() {
 
   // Renderiza a lista de partidas no container
   function renderMatches(matches) {
-    container.empty();
+    const containerCopa = $('#matches-container');
+    const containerExtra = $('#matches-container-extra');
 
-    matches.forEach(match => {
+    const matchesCopa = matches.filter(m => m.tournament.includes('Copa do Mundo') || m.tournament.includes('World Cup'));
+    const matchesExtra = matches.filter(m => !m.tournament.includes('Copa do Mundo') && !m.tournament.includes('World Cup'));
+
+    const renderToContainer = (matchList, target) => {
+      if (!target.length) return;
+      target.empty();
+
+      if (matchList.length === 0) {
+        target.append('<div class="matches-loading">Nenhuma partida encontrada.</div>');
+        return;
+      }
+
+      matchList.forEach(match => {
       const isFinished = match.status === 'finished';
       const isLive = match.status === 'live';
       
@@ -204,8 +217,12 @@ $(document).ready(function() {
         </div>
       `;
 
-      container.append(cardHtml);
-    });
+      target.append(cardHtml);
+      });
+    };
+
+    renderToContainer(matchesCopa, containerCopa);
+    renderToContainer(matchesExtra, containerExtra);
 
     // Se a biblioteca GSAP estiver disponível, ativa a animação de entrada com stagger
     if (typeof gsap !== 'undefined') {
