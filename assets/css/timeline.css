@@ -70,6 +70,36 @@
   z-index: 1;
   box-shadow: 0 0 15px rgba(0, 155, 58, 0.5);
   border-radius: 2px;
+  overflow: hidden;
+}
+
+/* Animated Scroll (Bolinha de Luz que desce a linha) */
+.timeline-scroll-anim {
+  position: absolute;
+  top: -100px;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  background: linear-gradient(to bottom, transparent, #FFFFFF, transparent);
+  animation: timelineScrollAnim 4s linear infinite;
+  box-shadow: 0 0 10px #FFFFFF, 0 0 20px #FFD700;
+}
+
+@keyframes timelineScrollAnim {
+  0% {
+    top: -100px;
+    opacity: 0;
+  }
+  5% {
+    opacity: 1;
+  }
+  95% {
+    opacity: 1;
+  }
+  100% {
+    top: 100%;
+    opacity: 0;
+  }
 }
 
 /* Item da Timeline */

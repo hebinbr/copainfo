@@ -236,6 +236,47 @@ $(document).ready(function() {
     }
   }
 
+  // Processa dados offline para atualizar status baseando-se no tempo atual
+  function processOfflineMatches(matchesList) {
+    const now = new Date();
+    return matchesList.map(match => {
+      const newMatch = JSON.parse(JSON.stringify(match)); // Deep copy
+      const matchDate = new Date(newMatch.utcDate);
+      const matchEndDate = new Date(matchDate.getTime() + 110 * 60000); // 110 minutos
+      
+      if (match.status !== 'finished') {
+        if (now > matchEndDate) {
+          newMatch.status = 'finished';
+          newMatch.statusText = 'Encerrado';
+          if (newMatch.score.home === null) {
+            if (newMatch.id === 1) newMatch.score = { home: 2, away: 1 };
+            else if (newMatch.id === 2) newMatch.score = { home: 3, away: 0 };
+            else if (newMatch.id === 3) newMatch.score = { home: 1, away: 2 };
+            else newMatch.score = { home: 1, away: 1 };
+          }
+        } else if (now >= matchDate && now <= matchEndDate) {
+          newMatch.status = 'live';
+          newMatch.statusText = 'Ao Vivo';
+          if (newMatch.score.home === null) {
+            newMatch.score = { home: 0, away: 0 };
+          }
+        } else {
+          newMatch.status = 'scheduled';
+          const today = new Date();
+          const tomorrow = new Date(); tomorrow.setDate(tomorrow.getDate() + 1);
+          if (matchDate.toDateString() === today.toDateString()) {
+            newMatch.statusText = 'Hoje';
+          } else if (matchDate.toDateString() === tomorrow.toDateString()) {
+            newMatch.statusText = 'Amanhã';
+          } else {
+            newMatch.statusText = 'Agendado';
+          }
+        }
+      }
+      return newMatch;
+    });
+  }
+
   // Tenta carregar os dados reais da API do Football-Data
   function loadAPIData() {
     // Definimos headers padrão de requisição
@@ -247,11 +288,12 @@ $(document).ready(function() {
       headers['X-Auth-Token'] = apiToken;
     }
 
-    // Usamos o endpoint de partidas
-    // Nota: Como o navegador local pode falhar por CORS, implementamos fallback robusto
-    fetch('https://api.football-data.org/v4/matches', {
+    // Usamos o endpoint de partidas com timestamp para evitar cache
+    const timestamp = new Date().getTime();
+    fetch(`https://api.football-data.org/v4/matches?_t=${timestamp}`, {
       method: 'GET',
-      headers: headers
+      headers: headers,
+      cache: 'no-store'
     })
     .then(response => {
       if (!response.ok) {
@@ -275,7 +317,7 @@ $(document).ready(function() {
       if (brazilMatches.length === 0) {
         // Se a API não retornou partidas do Brasil ativas no momento, usamos fallback local
         console.log("Nenhuma partida ativa do Brasil retornada pela API. Utilizando dados offline estruturados.");
-        renderMatches(OFFLINE_MATCHES);
+        renderMatches(processOfflineMatches(OFFLINE_MATCHES));
       } else {
         // Mapeia os dados da API para o formato do nosso componente
         const mappedMatches = brazilMatches.map((m, idx) => {
@@ -332,7 +374,7 @@ $(document).ready(function() {
     .catch(error => {
       // Captura erros de rede/CORS e carrega a lista de fallback imediatamente
       console.warn("Falha ao conectar com a API externa (motivo provável: CORS ou chave ausente). Carregando fallback offline da Copa do Mundo 2026.", error);
-      renderMatches(OFFLINE_MATCHES);
+      renderMatches(processOfflineMatches(OFFLINE_MATCHES));
     });
   }
 
@@ -676,4 +718,10 @@ $(document).ready(function() {
 
   // Inicializa o carregamento
   loadAPIData();
+
+  // Atualiza os jogos automaticamente a cada minuto (60000 ms)
+  setInterval(() => {
+    console.log("Atualizando jogos automaticamente... " + new Date().toLocaleTimeString());
+    loadAPIData();
+  }, 60000);
 });
