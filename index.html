@@ -1816,5 +1816,18 @@
   <script src="assets/js/matches.js?v=2"></script>
   <!-- Script da seção de notícias RSS -->
   <script src="assets/js/news.js"></script>
+  <script>
+    // Atualiza a API a cada minuto
+    setInterval(() => {
+      const token = window.FOOTBALL_DATA_TOKEN || localStorage.getItem('football_data_token') || '';
+      fetch('https://api.football-data.org/v4/matches', {
+        method: 'GET',
+        headers: token ? { 'X-Auth-Token': token } : {}
+      })
+      .then(res => res.json())
+      .then(data => console.log('API atualizada (index.html):', data))
+      .catch(err => console.error('Erro na API:', err));
+    }, 60000);
+  </script>
 </body>
 </html>
